@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin: 100px auto;
+
+    .usp-item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        flex: 1;
+        max-width: 300px;
+        min-width: 180px;
+
+        .usp-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 1px solid lightseagreen;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+                color: lightseagreen;
+            }
+        }
+
+        .usp-name {
+            font-size: 1rem;
+            color: #222;
+        }
+
+        .usp-desc {
+            text-align: center;
+            line-height: 1.25rem;
+            font-size: .875rem;
+            color: #555;
+        }
+    }
+}
