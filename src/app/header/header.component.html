@@ -1,6 +1,6 @@
 <header>
     <div class="container">
-        <a href="#" class="main-logo-container">
+        <a [routerLink]="['/home']" class="main-logo-container">
             <img src="main-logo.png" alt="Main Logo" class="main-logo">
         </a>
 
@@ -8,10 +8,15 @@
 
         <nav class="main-navbar">
             <ul class="navbar-list">
-                <li class="navbar-list-item"><a href="#" class="navbar-link">Home</a></li>
-                <li class="navbar-list-item"><a href="#" class="navbar-link">Hotels</a></li>
-                <li class="navbar-list-item"><a href="#" class="navbar-link">Rooms</a></li>
-                <li class="navbar-list-item"><a href="#" class="navbar-link">Booked Rooms</a></li>
+                <li class="navbar-list-item"><a [routerLink]="['/home']" routerLinkActive="router-link-active"
+                        class="navbar-link">Home</a></li>
+                <li class="navbar-list-item"><a [routerLink]="['/hotels']" routerLinkActive="router-link-active"
+                        class="navbar-link">Hotels</a></li>
+                <li class="navbar-list-item"><a [routerLink]="['/rooms']" routerLinkActive="router-link-active"
+                        class="navbar-link">Rooms</a></li>
+                <li class="navbar-list-item"><a [routerLink]="['/booked-rooms']" routerLinkActive="router-link-active"
+                        class="navbar-link">Booked Rooms</a>
+                </li>
             </ul>
         </nav>
     </div>

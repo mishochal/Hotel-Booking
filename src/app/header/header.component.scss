@@ -41,7 +41,8 @@ header {
                         transition: color 0.2s;
                     }
 
-                    .navbar-link:hover {
+                    .navbar-link:hover,
+                    .router-link-active {
                         color: lightseagreen;
                     }
                 }
