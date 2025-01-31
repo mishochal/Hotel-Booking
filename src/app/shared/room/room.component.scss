@@ -1,0 +1,57 @@
+.room-card {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+    .room-img {
+        width: 100%;
+    }
+
+    .room-card-body {
+        padding: 10px 20px 25px;
+    }
+
+    .room-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .room-desc {
+            padding-left: 10px;
+        }
+
+        .room-price {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 10px;
+            border-left: 1px solid rgba(32, 178, 170, 0.3);
+
+            span {
+                font-size: 0.75rem;
+                color: #444;
+            }
+
+            .amount {
+                color: lightseagreen;
+                font-weight: bold;
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    .book-btn {
+        font-size: 1rem;
+        margin-top: 10px;
+        padding: 0.5em 1em;
+        width: 100%;
+        background-color: rgb(5, 160, 152);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .book-btn:hover {
+        background-color: lightseagreen;
+    }
+}

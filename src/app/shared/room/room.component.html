@@ -1,0 +1,14 @@
+<div class="room-card">
+    <img [src]="room.images[0].source" alt="Room Image" class="room-img">
+
+    <div class="room-card-body">
+        <div class="room-details">
+            <p class="room-desc">{{ room.name }}</p>
+            <div class="room-price">
+                <span class="amount">{{room.pricePerNight | currency }}</span>
+                <span>a night</span>
+            </div>
+        </div>
+        <button class="book-btn">Book now</button>
+    </div>
+</div>
