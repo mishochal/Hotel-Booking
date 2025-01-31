@@ -1,0 +1,41 @@
+.hotel-card {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+
+    .hotel-img {
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .hotel-card-body {
+        padding: 15px 20px 25px;
+
+        .hotel-name {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .view-rooms-btn {
+            font-size: 1rem;
+            margin-top: 10px;
+            padding: 0.5em 1em;
+            width: 100%;
+            background-color: rgb(5, 160, 152);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-rooms-btn:hover {
+            background-color: lightseagreen;
+        }
+    }
+}
+
+.hotel-card:has(.view-rooms-btn:hover) {
+    transform: scale(1.05);
+}

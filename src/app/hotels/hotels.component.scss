@@ -1,0 +1,45 @@
+.hotels-section {
+    margin: 100px auto;
+
+    .filter {
+        display: flex;
+        margin-bottom: 50px;
+
+        .city {
+            padding: 0.8em 1.6em;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .city.selected,
+        .city:hover {
+            color: white;
+            background-color: lightseagreen;
+        }
+    }
+
+    .hotels {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .hotel {
+            min-width: 250px;
+            max-width: calc((100% - 2 * 25px) / 3);
+            flex: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .hotels-section .hotels .hotel {
+        max-width: calc((100% - 25px) / 2);
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .hotels-section .hotels .hotel {
+        max-width: 100%;
+    }
+}
