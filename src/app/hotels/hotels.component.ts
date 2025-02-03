@@ -3,17 +3,19 @@ import { HotelsService } from '../services/hotels.service';
 import { Hotel } from '../models/hotels.model';
 import { HotelComponent } from './hotel/hotel.component';
 import { CommonModule } from '@angular/common';
+import { FilterComponent } from '../shared/filter/filter.component';
+import { Filter } from '../models/filter.model';
 
 @Component({
     selector: 'app-hotels',
-    imports: [CommonModule, HotelComponent],
+    imports: [CommonModule, HotelComponent, FilterComponent],
     templateUrl: './hotels.component.html',
     styleUrl: './hotels.component.scss'
 })
 export class HotelsComponent implements OnInit {
     hotels: Hotel[] = [];
     fetchedHotels: Hotel[] = [];
-    cities: string[] = [];
+    cities: Filter[] = [];
     selectedCity: number = 0;
 
     constructor(private hotelsService: HotelsService) { }
@@ -40,15 +42,11 @@ export class HotelsComponent implements OnInit {
         )
     }
 
-    fillter(id: number, city: string): void {
-        this.selectedCity = id;
-        if (id === 0) {
+    filter(filter: Filter): void {
+        if (filter.id === 0) {
             this.hotels = this.fetchedHotels;
         } else {
-            // this.hotels = this.fetchedHotels.filter((hotel) => {
-            //     return hotel.city === city;
-            // })
-            this.hotelsService.getHotelsByCity(city).subscribe(
+            this.hotelsService.getHotelsByCity(filter.name).subscribe(
                 (hotels) => {
                     this.hotels = hotels;
                 }

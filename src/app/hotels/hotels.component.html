@@ -1,10 +1,5 @@
 <section class="hotels-section container">
-    <div class="filter">
-        <div class="city" [ngClass]="{'selected' : selectedCity === 0}" (click)="fillter(0, '')">All</div>
-        <div class="city" *ngFor="let city of cities; index as i" [ngClass]="{'selected' : selectedCity === i + 1}"
-            (click)="fillter(i + 1, city)">
-            {{ city }}</div>
-    </div>
+    <app-filter [filterList]="cities" (filterEvent)="filter($event)"></app-filter>
 
     <div class="hotels">
         <app-hotel *ngFor="let hotel of hotels" [hotel]="hotel" class="hotel"></app-hotel>

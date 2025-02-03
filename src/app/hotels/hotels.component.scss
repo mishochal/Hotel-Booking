@@ -1,22 +1,6 @@
 .hotels-section {
-    margin: 100px auto;
-
-    .filter {
-        display: flex;
-        margin-bottom: 50px;
-
-        .city {
-            padding: 0.8em 1.6em;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .city.selected,
-        .city:hover {
-            color: white;
-            background-color: lightseagreen;
-        }
-    }
+    margin-bottom: 100px;
+    min-height: 100vh;
 
     .hotels {
         display: flex;
