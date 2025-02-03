@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hotel } from '../models/hotels.model';
+import { Filter } from '../models/filter.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +17,9 @@ export class HotelsService {
         return this.http.get<Hotel[]>(url);
     }
 
-    getAllCities(): Observable<string[]> {
+    getAllCities(): Observable<Filter[]> {
         const url = `${this.apiUrl}/GetCities`;
-        return this.http.get<string[]>(url);
+        return this.http.get<Filter[]>(url);
     }
 
     getHotelsByCity(city: string): Observable<Hotel[]> {
