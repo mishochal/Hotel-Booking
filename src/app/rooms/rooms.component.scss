@@ -1,0 +1,6 @@
+.rooms {
+    margin: 100px auto;
+    display: grid;
+    gap: 50px 25px;
+    grid-template-columns: repeat(3, (calc((100% - 2 * 25px)/3)));
+}
