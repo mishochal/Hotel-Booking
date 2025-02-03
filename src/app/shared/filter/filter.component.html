@@ -1,0 +1,7 @@
+<div class="filters">
+    <div class="filter" [ngClass]="{'selected' : selectedFilter === 0}" (click)="onFilter(0)">All</div>
+    <div class="filter" *ngFor="let filter of filterList; index as i"
+        [ngClass]="{'selected' : selectedFilter === i + 1}" (click)="onFilter(i + 1, filter)">
+        {{ filter.name ? filter.name : filter }}
+    </div>
+</div>
