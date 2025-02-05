@@ -4,7 +4,7 @@ import { Hotel } from '../models/hotels.model';
 import { HotelComponent } from './hotel/hotel.component';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../shared/filter/filter.component';
-import { Filter } from '../models/filter.model';
+import { SharedFilter } from '../models/shared-filter.model';
 
 @Component({
     selector: 'app-hotels',
@@ -15,7 +15,7 @@ import { Filter } from '../models/filter.model';
 export class HotelsComponent implements OnInit {
     hotels: Hotel[] = [];
     fetchedHotels: Hotel[] = [];
-    cities: Filter[] = [];
+    cities: SharedFilter[] = [];
     selectedCity: number = 0;
 
     constructor(private hotelsService: HotelsService) { }
@@ -42,7 +42,7 @@ export class HotelsComponent implements OnInit {
         )
     }
 
-    filter(filter: Filter): void {
+    filter(filter: SharedFilter): void {
         if (filter.id === 0) {
             this.hotels = this.fetchedHotels;
         } else {

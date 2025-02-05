@@ -1,7 +1,6 @@
 <div class="container">
-    <app-filter [filterList]="roomTypes"></app-filter>
-
-    <app-rooms-filter></app-rooms-filter>
+    <app-filter [filterList]="roomTypes" (filterEvent)="filterByType($event)"></app-filter>
+    <app-rooms-filter (roomsFilterEvent)="filterRooms($event)" (filterResetEvent)="getAllRooms()"></app-rooms-filter>
 
     <div class="rooms">
         <app-room *ngFor="let room of rooms" [room]="room"></app-room>

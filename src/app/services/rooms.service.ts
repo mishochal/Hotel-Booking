@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { Room } from '../models/rooms.model';
-import { Filter } from '../models/filter.model';
+import { SharedFilter } from '../models/shared-filter.model';
+import { RoomsFilter } from '../models/rooms-filter.model';
 
 @Injectable({
     providedIn: 'root'
@@ -18,8 +19,31 @@ export class RoomsService {
         return this.http.get<Room[]>(url);
     }
 
-    getFillters(): Observable<Filter[]> {
+    getFillters(): Observable<SharedFilter[]> {
         const url = `${this.apiUrl}/GetRoomTypes`;
-        return this.http.get<Filter[]>(url);
+        return this.http.get<SharedFilter[]>(url);
+    }
+
+    getFilteredRooms(filterData: RoomsFilter): Observable<Room[]> {
+        const url = `${this.apiUrl}/GetFiltered`;
+
+        let apiData: RoomsFilter = {
+            priceFrom: filterData.priceFrom,
+            priceTo: filterData.priceTo
+        };
+        if (filterData.checkIn !== "") {
+            apiData.checkIn = filterData.checkIn;
+        }
+        if (filterData.checkOut !== "") {
+            apiData.checkOut = filterData.checkOut;
+        }
+        if (filterData.maximumGuests != 0) {
+            apiData.maximumGuests = filterData.maximumGuests;
+        }
+        if (filterData.roomTypeId != 0) {
+            apiData.roomTypeId = filterData.roomTypeId;
+        }
+
+        return this.http.post<Room[]>(url, apiData);
     }
 }

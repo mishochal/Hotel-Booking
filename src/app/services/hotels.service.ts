@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hotel } from '../models/hotels.model';
-import { Filter } from '../models/filter.model';
+import { SharedFilter } from '../models/shared-filter.model';
 
 @Injectable({
     providedIn: 'root'
@@ -17,9 +17,9 @@ export class HotelsService {
         return this.http.get<Hotel[]>(url);
     }
 
-    getAllCities(): Observable<Filter[]> {
+    getAllCities(): Observable<SharedFilter[]> {
         const url = `${this.apiUrl}/GetCities`;
-        return this.http.get<Filter[]>(url);
+        return this.http.get<SharedFilter[]>(url);
     }
 
     getHotelsByCity(city: string): Observable<Hotel[]> {

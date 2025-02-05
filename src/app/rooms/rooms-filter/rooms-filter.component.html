@@ -1,0 +1,44 @@
+<form (ngSubmit)="filterRooms()" #filterForm="ngForm">
+    <div class="form-group price-range">
+        <label>Price Per Night</label>
+        <div class="prices">
+            <input type="number" name="price-from" class="input-field" placeholder="From"
+                [(ngModel)]="filterData.priceFrom">
+            <input type="number" name="price-to" class="input-field" placeholder="To" [(ngModel)]="filterData.priceTo">
+        </div>
+    </div>
+    <div class="right">
+        <div class="form-group">
+            <label for="room-type">Room Type</label>
+            <select name="room-type" id="room-type" class="input-field" [(ngModel)]="filterData.roomTypeId">
+                <option value="0">All</option>
+                <option value="1">Single Room</option>
+                <option value="2">Double Room</option>
+                <option value="3">Deluxe Room</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="check-in">Check-in</label>
+            <input type="date" name="check-in" id="check-in" class="input-field" [(ngModel)]="filterData.checkIn">
+        </div>
+        <div class="form-group">
+            <label for="chech-out">Check-out</label>
+            <input type="date" name="check-out" id="check-out" class="input-field" [(ngModel)]="filterData.checkOut">
+        </div>
+        <div class="form-group">
+            <label for="guests">Guests</label>
+            <select name="guests" id="guests" class="input-field" [(ngModel)]="filterData.maximumGuests">
+                <option value="0">All</option>
+                <option value="1">1 Adult</option>
+                <option value="2">2 Adults</option>
+                <option value="3">3 Adults</option>
+                <option value="4">4 Adults</option>
+                <option value="5">5 Adults</option>
+            </select>
+        </div>
+        <div class="btns">
+            <button type="submit" class="btn">Apply Filter</button>
+            <button type="button" class="btn" (click)="resetForm()">Reset</button>
+        </div>
+    </div>
+</form>

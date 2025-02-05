@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Filter } from '../../models/filter.model';
+import { SharedFilter } from '../../models/shared-filter.model';
 
 @Component({
     selector: 'app-filter',
@@ -9,8 +9,8 @@ import { Filter } from '../../models/filter.model';
     styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
-    @Input() filterList: Filter[] = [];
-    @Output() filterEvent = new EventEmitter<Filter>();
+    @Input() filterList: SharedFilter[] = [];
+    @Output() filterEvent = new EventEmitter<SharedFilter>();
 
     selectedFilter: number = 0;
 
@@ -18,7 +18,7 @@ export class FilterComponent {
         this.selectedFilter = id;
         if (filter && filter.name) {
             this.filterEvent.emit(filter);
-        } else if (filter && !filter.name) {
+        } else {
             let filterObject = {
                 id: id,
                 name: filter
