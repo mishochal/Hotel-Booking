@@ -7,6 +7,7 @@ import { FilterComponent } from '../shared/filter/filter.component';
 import { SharedFilter } from '../models/shared-filter.model';
 import { RoomsFilterComponent } from './rooms-filter/rooms-filter.component';
 import { RoomsFilter } from '../models/rooms-filter.model';
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'app-rooms',
@@ -17,6 +18,8 @@ import { RoomsFilter } from '../models/rooms-filter.model';
 export class RoomsComponent implements OnInit {
     rooms: Room[] = [];
     roomTypes: SharedFilter[] = [];
+    currFilterData: RoomsFilter = {};
+    chosenRoomTypeId: number | undefined = 0;
 
     constructor(private roomsService: RoomsService) { }
 
@@ -46,17 +49,24 @@ export class RoomsComponent implements OnInit {
         this.roomsService.getFilteredRooms(filterData).subscribe(
             (filtered) => {
                 this.rooms = filtered;
+                this.currFilterData = { ...filterData };
             }
         )
     }
 
-    filterByType(filterData: SharedFilter): void {
-        console.log(filterData);
-        let typeFilterData: RoomsFilter = {
-            priceFrom: 0,
-            priceTo: 1000,
-            roomTypeId: filterData.id
+    resetFilters(): void {
+        this.rooms = [];
+        this.currFilterData = {};
+        if (this.chosenRoomTypeId === 0) {
+            this.getAllRooms();
+        } else {
+            this.filterRooms({ ...this.currFilterData, roomTypeId: this.chosenRoomTypeId });
         }
-        this.filterRooms(typeFilterData);
+    }
+
+    filterByType(filterData: SharedFilter): void {
+        this.currFilterData.roomTypeId = filterData.id;
+        this.chosenRoomTypeId = filterData.id;
+        this.filterRooms(this.currFilterData);
     }
 }
