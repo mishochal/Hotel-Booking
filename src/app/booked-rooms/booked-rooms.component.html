@@ -1,1 +1,19 @@
-<p>booked-rooms works!</p>
+<section class="container">
+    <table class="booked-rooms-table">
+        <thead>
+            <tr>
+                <th class="hotel-heading">Hotel</th>
+                <th class="room-heading">Room</th>
+                <th class="customer-heading">Customer</th>
+                <th class="status-heading">Status</th>
+                <th class="date-heading">Check-in</th>
+                <th class="date-heading">Check-out</th>
+                <th class="price-heading">Total Price</th>
+                <th class="close-btn-heading"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <app-booked-room *ngFor="let booking of bookedRooms" [room]="booking" class="table-row"></app-booked-room>
+        </tbody>
+    </table>
+</section>

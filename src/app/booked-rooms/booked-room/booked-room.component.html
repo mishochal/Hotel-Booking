@@ -1,0 +1,35 @@
+<td class="hotel-info">
+    <div class="flex-container">
+        <div class="left">
+            <img [src]="bookedHotel.featuredImage" alt="Hotel Image" class="img">
+        </div>
+        <div class="right">
+            <h5 class="name">{{ bookedHotel.name}}</h5>
+            <p class="location">{{bookedHotel.city}}</p>
+        </div>
+    </div>
+</td>
+<td class="room-info">
+    <div class="flex-container">
+        <div class="left">
+            <img [src]="bookedRoom.images[0].source" alt="Room Image" class="img">
+        </div>
+        <div class="right">
+            <h5 class="name">{{ bookedRoom.name }}</h5>
+            <p class="price">{{ bookedRoom.pricePerNight| currency}}</p>
+        </div>
+    </div>
+</td>
+<td class="customer-info">
+    <div class="flex-col-container">
+        <p class="customer-name">Name: {{ room.customerName }}</p>
+        <p class="customer-number">Phone: {{ room.customerPhone }}</p>
+    </div>
+</td>
+<td class="status">{{room.isConfirmed }}</td>
+<td class="check-in">{{ room.checkInDate | date}}</td>
+<td class="check-out">{{room.checkOutDate | date}}</td>
+<td class="price">{{room.totalPrice | currency}}</td>
+<td class="cancel">
+    <div class="cancel-btn" title="Cancel Booking"></div>
+</td>

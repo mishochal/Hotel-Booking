@@ -1,0 +1,31 @@
+.container {
+    margin: 100px auto;
+
+    .booked-rooms-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            border-bottom: 2px solid lightseagreen;
+
+            tr {
+                text-align: left;
+
+                th {
+                    padding: 14px 7px;
+                    color: #222;
+                    // font-size: 1rem;
+                }
+            }
+        }
+
+        tbody {
+            .table-row {
+                display: table-row;
+                border-bottom: 1px solid rgba(32, 178, 170, 0.5);
+                vertical-align: middle;
+            }
+        }
+
+    }
+}

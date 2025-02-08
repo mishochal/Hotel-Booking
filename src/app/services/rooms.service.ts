@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 import { Room } from '../models/rooms.model';
@@ -17,6 +17,12 @@ export class RoomsService {
     getAllRooms(): Observable<Room[]> {
         const url = `${this.apiUrl}/GetAll`;
         return this.http.get<Room[]>(url);
+    }
+
+    getRoom(id: number): Observable<Room> {
+        const url = `${this.apiUrl}/GetRoom/${id}`;
+
+        return this.http.get<Room>(url);
     }
 
     getFillters(): Observable<SharedFilter[]> {
