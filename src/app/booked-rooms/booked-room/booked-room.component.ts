@@ -24,25 +24,11 @@ export class BookedRoomComponent implements OnInit {
         featuredImage: "",
         rooms: [],
     };
-    bookedRoom: Room = {
-        id: 0,
-        name: "",
-        hotelId: 0,
-        pricePerNight: 0,
-        available: false,
-        maximumGuests: 0,
-        roomTypeId: 0,
-        bookedDates: [],
-        images: [{
-            id: 0,
-            source: "",
-            roomId: 0,
-        }],
-    };
+    bookedRoom: Room | undefined
 
     constructor(
         private roomService: RoomsService,
-        private hotelService: HotelsService
+        private hotelService: HotelsService,
     ) { }
 
     ngOnInit(): void {
@@ -51,22 +37,10 @@ export class BookedRoomComponent implements OnInit {
     }
 
     getRoom(roomId: number): void {
-        this.roomService.getRoom(roomId).pipe(
-            take(1),
-        ).subscribe(
-            (room) => {
-                this.bookedRoom = room;
-            }
-        )
+        this.bookedRoom = this.roomService.rooms[roomId - 1];
     }
 
     getHotel(roomId: number): void {
-        this.hotelService.getHotelByRoom(roomId).pipe(
-            take(1),
-        ).subscribe(
-            (hotel) => {
-                this.bookedHotel = hotel;
-            }
-        )
+        this.bookedHotel = this.hotelService.hotels[this.bookedRoom!.hotelId - 1];
     }
 }

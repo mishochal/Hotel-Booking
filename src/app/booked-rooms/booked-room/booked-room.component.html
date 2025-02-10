@@ -12,11 +12,11 @@
 <td class="room-info">
     <div class="flex-container">
         <div class="left">
-            <img [src]="bookedRoom.images[0].source" alt="Room Image" class="img">
+            <img [src]="bookedRoom?.images?.at(0)?.source" alt="Room Image" class="img">
         </div>
         <div class="right">
-            <h5 class="name">{{ bookedRoom.name }}</h5>
-            <p class="price">{{ bookedRoom.pricePerNight| currency}}</p>
+            <h5 class="name">{{ bookedRoom?.name}}</h5>
+            <p class="price">{{ bookedRoom?.pricePerNight | currency}}</p>
         </div>
     </div>
 </td>

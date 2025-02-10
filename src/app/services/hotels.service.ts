@@ -13,9 +13,21 @@ import { Room } from '../models/rooms.model';
 export class HotelsService {
     private apiUrl = "https://hotelbooking.stepprojects.ge/api/Hotels"
 
+    public hotels: Hotel[] = [];
+
     constructor(private http: HttpClient,
         private roomsService: RoomsService
     ) { }
+
+    loadHotels(): void {
+        this.getAllHotels().pipe(
+            take(1),
+        ).subscribe(
+            (hotels) => {
+                this.hotels = hotels;
+            }
+        )
+    }
 
     getAllHotels(): Observable<Hotel[]> {
         const url = `${this.apiUrl}/GetAll`;

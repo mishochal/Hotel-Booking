@@ -1,4 +1,6 @@
-<section class="container">
+<app-loading-spinner *ngIf="!isLoaded"></app-loading-spinner>
+
+<section class="container" *ngIf="isLoaded">
     <table class="booked-rooms-table">
         <thead>
             <tr>

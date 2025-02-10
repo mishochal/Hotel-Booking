@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, Observable } from 'rxjs';
+import { filter, Observable, take } from 'rxjs';
 import { Room } from '../models/rooms.model';
 import { SharedFilter } from '../models/shared-filter.model';
 import { RoomsFilter } from '../models/rooms-filter.model';
@@ -12,7 +12,19 @@ export class RoomsService {
 
     private apiUrl = "https://hotelbooking.stepprojects.ge/api/Rooms";
 
+    public rooms: Room[] = [];
+
     constructor(private http: HttpClient) { }
+
+    loadRooms(): void {
+        this.getAllRooms().pipe(
+            take(1),
+        ).subscribe(
+            (rooms) => {
+                this.rooms = rooms;
+            }
+        )
+    }
 
     getAllRooms(): Observable<Room[]> {
         const url = `${this.apiUrl}/GetAll`;
