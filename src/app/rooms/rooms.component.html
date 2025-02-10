@@ -2,7 +2,9 @@
     <app-filter [filterList]="roomTypes" (filterEvent)="filterByType($event)"></app-filter>
     <app-rooms-filter (roomsFilterEvent)="filterRooms($event)" (filterResetEvent)="resetFilters()"></app-rooms-filter>
 
-    <div class="rooms">
+    <div class="rooms" *ngIf="isLoaded">
         <app-room *ngFor="let room of rooms" [room]="room"></app-room>
     </div>
+
+    <app-loading-spinner *ngIf="!isLoaded"></app-loading-spinner>
 </div>

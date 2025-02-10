@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RoomsService } from '../services/rooms.service';
 import { Room } from '../models/rooms.model';
 import { RoomComponent } from '../shared/room/room.component';
-import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../shared/filter/filter.component';
 import { SharedFilter } from '../models/shared-filter.model';
 import { RoomsFilterComponent } from './rooms-filter/rooms-filter.component';
 import { RoomsFilter } from '../models/rooms-filter.model';
-import { filter } from 'rxjs';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 @Component({
     selector: 'app-rooms',
-    imports: [CommonModule, RoomComponent, FilterComponent, RoomsFilterComponent],
+    imports: [CommonModule, RoomComponent, FilterComponent, RoomsFilterComponent, LoadingSpinnerComponent],
     templateUrl: './rooms.component.html',
     styleUrl: './rooms.component.scss'
 })
@@ -20,18 +20,21 @@ export class RoomsComponent implements OnInit {
     roomTypes: SharedFilter[] = [];
     currFilterData: RoomsFilter = {};
     chosenRoomTypeId: number | undefined = 0;
+    isLoaded: boolean = false;
 
     constructor(private roomsService: RoomsService) { }
 
     ngOnInit(): void {
-        this.getAllRooms();
+        this.isLoaded = false;
         this.getRoomTypes();
+        this.getAllRooms();
     }
 
     getAllRooms(): void {
         this.roomsService.getAllRooms().subscribe(
             (rooms) => {
                 this.rooms = rooms;
+                this.isLoaded = true;
             }
         )
     }
@@ -46,10 +49,12 @@ export class RoomsComponent implements OnInit {
 
     filterRooms(filterData: RoomsFilter): void {
         this.rooms = [];
+        this.isLoaded = false;
         this.roomsService.getFilteredRooms(filterData).subscribe(
             (filtered) => {
                 this.rooms = filtered;
                 this.currFilterData = { ...filterData };
+                this.isLoaded = true;
             }
         )
     }
