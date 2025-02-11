@@ -6,6 +6,7 @@ import { Room } from '../../models/rooms.model';
 import { RoomsService } from '../../services/rooms.service';
 import { HotelsService } from '../../services/hotels.service';
 import { take } from 'rxjs/operators';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
     selector: 'app-booked-room',
@@ -29,6 +30,7 @@ export class BookedRoomComponent implements OnInit {
     constructor(
         private roomService: RoomsService,
         private hotelService: HotelsService,
+        private bookingService: BookingService
     ) { }
 
     ngOnInit(): void {
@@ -42,5 +44,9 @@ export class BookedRoomComponent implements OnInit {
 
     getHotel(roomId: number): void {
         this.bookedHotel = this.hotelService.hotels[this.bookedRoom!.hotelId - 1];
+    }
+
+    cancelBooking(bookingId: number) {
+        this.bookingService.cancelBooking(bookingId).subscribe();
     }
 }

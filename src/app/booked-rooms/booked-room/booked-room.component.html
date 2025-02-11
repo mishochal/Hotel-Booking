@@ -31,5 +31,5 @@
 <td class="check-out">{{room.checkOutDate | date}}</td>
 <td class="price">{{room.totalPrice | currency}}</td>
 <td class="cancel">
-    <div class="cancel-btn" title="Cancel Booking"></div>
+    <div class="cancel-btn" title="Cancel Booking" (click)="cancelBooking(room.id)"></div>
 </td>
