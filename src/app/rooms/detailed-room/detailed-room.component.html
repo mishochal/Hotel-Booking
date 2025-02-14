@@ -1,1 +1,60 @@
-<p>detailed-room works!</p>
+<div *ngIf="isLoaded" class="container">
+    <div class="room-imgs">
+        <div class="main-img-container">
+            <div class="img-slider-arrows">
+                <div class="arrow left" (click)="selectImage(currImgIndex - 1)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path
+                            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                    </svg>
+                </div>
+                <div class="arrow right" (click)="selectImage(currImgIndex + 1)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path
+                            d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                    </svg>
+                </div>
+            </div>
+            <img [src]="room!.images[currImgIndex].source" alt="Room Image">
+        </div>
+        <div class="small-imgs">
+            <img *ngFor="let image of room!.images; index as i" [src]="image.source" alt="Room Image" class="small-img"
+                (click)="selectImage(i)">
+        </div>
+    </div>
+    <div class="reservation-details">
+        <div class="reservation-header">
+            <div class="horizontal-line"></div>
+            <h2 class="reservation-heading">Reservation</h2>
+        </div>
+        <div class="room-info">
+            <h4 class="room-name">{{ room?.name }}</h4>
+            <p class="room-price">{{ room?.pricePerNight | currency }}</p>
+        </div>
+        <form class="reservation-form" (ngSubmit)="bookRoom(bookingForm)" #bookingForm="ngForm">
+            <div class="form-group">
+                <label for="check-in">Check-in</label>
+                <input type="date" id="check-in" name="check-in" required>
+            </div>
+            <div class="form-group">
+                <label for="check-out">Check-out</label>
+                <input type="date" name="check-out" id="check-out" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-name">Customer Name</label>
+                <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" name="phone-number" id="phone-number" placeholder="+995 12 34 56" required>
+            </div>
+            <div class="form-group">
+                <label for="user-id">User ID</label>
+                <input type="number" name="user-id" id="user-id" placeholder="01019050022">
+            </div>
+            <button type="submit" class="booking-btn">Book Now</button>
+        </form>
+    </div>
+</div>
+
+<app-loading-spinner *ngIf="!isLoaded"></app-loading-spinner>
