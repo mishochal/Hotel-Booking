@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
+import { BookingForm } from '../../models/booking.model';
 
 @Component({
     selector: 'app-detailed-room',
@@ -13,7 +14,17 @@ import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-sp
     styleUrl: './detailed-room.component.scss'
 })
 export class DetailedRoomComponent implements OnInit {
+
     room: Room | undefined;
+    bookingData: BookingForm = {
+        roomID: 0,
+        checkInDate: "",
+        checkOutDate: "",
+        customerName: "",
+        customerId: "",
+        customerPhone: ""
+    }
+
     isLoaded: boolean = false;
     currImgIndex: number = 0;
     interval: any;
@@ -30,6 +41,7 @@ export class DetailedRoomComponent implements OnInit {
                     this.room = room;
                     console.log(this.room)
                     this.isLoaded = true;
+                    this.bookingData.roomID = room.id;
                     this.startSlider();
                 }
             )
@@ -43,8 +55,80 @@ export class DetailedRoomComponent implements OnInit {
     }
 
     bookRoom(form: NgForm) {
-
+        console.log(this.bookingData)
+        console.log(form.valid);
     }
+
+    getCurrDate(): string {
+        let currDate = new Date();
+
+        let year = currDate.getFullYear()
+        let month = (currDate.getMonth() + 1) < 10 ? "0" + (currDate.getMonth() + 1) : currDate.getMonth() + 1;
+        let day = currDate.getDate() < 10 ? "0" + currDate.getDate() : currDate.getDate();
+
+        return `${year}-${month}-${day}`;
+    }
+
+    getCheckinMax(): string {
+        if (this.bookingData.checkOutDate === "") {
+            return "2027-01-01";
+        }
+        let checkOutDate = new Date(this.bookingData.checkOutDate);
+        let previousDate = new Date(checkOutDate);
+        previousDate.setDate(previousDate.getDate() - 1);
+
+        let year = previousDate.getFullYear();
+        let month = (previousDate.getMonth() + 1) < 10 ? "0" + (previousDate.getMonth() + 1) : previousDate.getMonth() + 1;
+        let day = previousDate.getDate() < 10 ? "0" + previousDate.getDate() : previousDate.getDate();
+
+        return `${year}-${month}-${day}`;
+    }
+
+    getCheckoutMin(): string {
+        let checkInString = this.bookingData.checkInDate ? this.bookingData.checkInDate : this.getCurrDate();
+
+        let checkInDate = new Date(checkInString);
+        let nextDate = new Date(checkInDate);
+        nextDate.setDate(checkInDate.getDate() + 1);
+
+        let year = nextDate.getFullYear()
+        let month = (nextDate.getMonth() + 1) < 10 ? "0" + (nextDate.getMonth() + 1) : nextDate.getMonth() + 1;
+        let day = nextDate.getDate() < 10 ? "0" + nextDate.getDate() : nextDate.getDate();
+
+        return `${year}-${month}-${day}`;
+    }
+
+    checkinValidity() {
+        let minDateString = this.getCurrDate();
+        let minDate = new Date(minDateString);
+
+        let maxDateString = this.getCheckinMax();
+        let maxDate = new Date(maxDateString);
+
+        let enteredDate = new Date(this.bookingData.checkInDate);
+        if (!isNaN(enteredDate.getTime())) {
+            if (enteredDate < minDate) {
+                this.bookingData.checkInDate = minDateString;
+            } else if (enteredDate > maxDate) {
+                this.bookingData.checkInDate = maxDateString;
+            }
+        }
+        console.log(enteredDate.getTime());
+    }
+
+    checkoutValidity() {
+        let minDateString = this.getCheckoutMin();
+        let minDate = new Date(minDateString);
+
+        let enteredDate = new Date(this.bookingData.checkOutDate);
+
+        if (!isNaN(enteredDate.getTime())) {
+            if (enteredDate < minDate) {
+                this.bookingData.checkOutDate = minDateString;
+            }
+        }
+    }
+
 
     selectImage(index: number) {
         if (index < 0) {

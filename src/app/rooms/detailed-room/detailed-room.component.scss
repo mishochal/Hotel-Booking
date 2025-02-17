@@ -138,10 +138,15 @@ img {
                     font-size: 0.875rem;
                     border-radius: 5px;
                     border: 1px solid lightseagreen;
-                    color: #555;
+                    color: #333;
                     min-width: 250px;
                 }
 
+                .error {
+                    font-size: 0.7rem;
+                    font-weight: bold;
+                    color: red;
+                }
             }
 
             .booking-btn {
@@ -152,6 +157,7 @@ img {
                 border: none;
                 border-radius: 5px;
                 margin-top: 15px;
+                cursor: pointer;
             }
         }
     }

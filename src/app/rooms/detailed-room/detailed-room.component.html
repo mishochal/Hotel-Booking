@@ -34,23 +34,48 @@
         <form class="reservation-form" (ngSubmit)="bookRoom(bookingForm)" #bookingForm="ngForm">
             <div class="form-group">
                 <label for="check-in">Check-in</label>
-                <input type="date" id="check-in" name="check-in" required>
+                <input type="date" id="check-in" name="check-in" [(ngModel)]="bookingData.checkInDate" required
+                    [min]="getCurrDate()" [max]="getCheckinMax()" (blur)="checkinValidity()" #checkInCtrl="ngModel">
+                <div *ngIf="checkInCtrl.invalid && (checkInCtrl.touched || bookingForm.submitted)" class="error">
+                    <span *ngIf="checkInCtrl.errors?.['required']">Check-in date is required</span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="check-out">Check-out</label>
-                <input type="date" name="check-out" id="check-out" required>
+                <input type="date" name="check-out" id="check-out" [(ngModel)]="bookingData.checkOutDate" required
+                    [min]="getCheckoutMin()" (blur)="checkoutValidity()" #checkOutCtrl="ngModel">
+                <div *ngIf="checkOutCtrl.invalid && (checkOutCtrl.touched || bookingForm.submitted)" class="error">
+                    <span *ngIf="checkOutCtrl.errors?.['required']">Check-out date is required</span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="customer-name">Customer Name</label>
-                <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name" required>
+                <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name"
+                    [(ngModel)]="bookingData.customerName" required pattern="[a-zA-Z]{1,} [a-zA-Z]{1,} {0,}"
+                    #nameCtrl="ngModel">
+                <div *ngIf="nameCtrl.invalid && (nameCtrl.touched || bookingForm.submitted)" class="error">
+                    <span *ngIf="nameCtrl.errors?.['required']">Customer name is required</span>
+                    <span *ngIf="nameCtrl.errors?.['pattern']">Customer Name should consist of first and last names (no
+                        numbers or special characters)</span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="phone-number">Phone Number</label>
-                <input type="tel" name="phone-number" id="phone-number" placeholder="+995 12 34 56" required>
+                <input type="tel" name="phone-number" id="phone-number" placeholder="+995---------"
+                    [(ngModel)]="bookingData.customerPhone" required pattern="\+995\d{9}" #phoneCtrl="ngModel">
+                <div *ngIf="phoneCtrl.invalid && (phoneCtrl.touched || bookingForm.submitted)" class="error">
+                    <span *ngIf="phoneCtrl.errors?.['required']">Customer phone is required</span>
+                    <span *ngIf="phoneCtrl.errors?.['pattern']">Phone number is invalid</span>
+                </div>
             </div>
             <div class="form-group">
-                <label for="user-id">User ID</label>
-                <input type="number" name="user-id" id="user-id" placeholder="01019050022">
+                <label for="customer-id">Customer ID</label>
+                <input type="text" name="customer-id" id="customer-id" placeholder="01019050022"
+                    [(ngModel)]="bookingData.customerId" required pattern="\d{11}" #idCtrl="ngModel">
+                <div *ngIf="idCtrl.invalid && (idCtrl.touched || bookingForm.submitted)" class="error">
+                    <span *ngIf="idCtrl.errors?.['required']">Customer ID is required</span>
+                    <span *ngIf="idCtrl.errors?.['pattern']">ID number should contain exactly 11 digits</span>
+                </div>
             </div>
             <button type="submit" class="booking-btn">Book Now</button>
         </form>
