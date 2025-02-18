@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BookedRoom } from '../models/booking.model';
+import { BookedRoom, BookingForm } from '../models/booking.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +16,12 @@ export class BookingService {
         const url = this.apirUrl;
 
         return this.http.get<BookedRoom[]>(url);
+    }
+
+    addBookedRoom(bookingData: BookingForm): Observable<void> {
+        const url = this.apirUrl;
+
+        return this.http.post<void>(url, bookingData);
     }
 
     cancelBooking(bookingId: number): Observable<void> {

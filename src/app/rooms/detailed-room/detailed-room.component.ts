@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 import { BookingForm } from '../../models/booking.model';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
     selector: 'app-detailed-room',
@@ -31,6 +32,7 @@ export class DetailedRoomComponent implements OnInit {
 
     constructor(
         private roomService: RoomsService,
+        private bookingService: BookingService,
         private route: ActivatedRoute
     ) { }
 
@@ -39,7 +41,6 @@ export class DetailedRoomComponent implements OnInit {
             this.roomService.getRoom(params["id"]).subscribe(
                 (room) => {
                     this.room = room;
-                    console.log(this.room)
                     this.isLoaded = true;
                     this.bookingData.roomID = room.id;
                     this.startSlider();
@@ -55,8 +56,17 @@ export class DetailedRoomComponent implements OnInit {
     }
 
     bookRoom(form: NgForm) {
-        console.log(this.bookingData)
-        console.log(form.valid);
+        if (form.valid) {
+            this.bookingService.addBookedRoom(this.bookingData).subscribe(
+                () => {
+                    console.log("booked");
+                },
+                (error) => {
+                    console.log("error")
+                    console.log(error);
+                }
+            );
+        }
     }
 
     getCurrDate(): string {
@@ -113,7 +123,6 @@ export class DetailedRoomComponent implements OnInit {
                 this.bookingData.checkInDate = maxDateString;
             }
         }
-        console.log(enteredDate.getTime());
     }
 
     checkoutValidity() {
