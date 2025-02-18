@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookedRoom, BookingForm } from '../models/booking.model';
@@ -18,10 +18,9 @@ export class BookingService {
         return this.http.get<BookedRoom[]>(url);
     }
 
-    addBookedRoom(bookingData: BookingForm): Observable<void> {
+    addBookedRoom(bookingData: BookingForm): Observable<string> {
         const url = this.apirUrl;
-
-        return this.http.post<void>(url, bookingData);
+        return this.http.post(url, bookingData, { responseType: "text" });
     }
 
     cancelBooking(bookingId: number): Observable<void> {
