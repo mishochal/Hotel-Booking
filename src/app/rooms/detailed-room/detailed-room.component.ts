@@ -7,10 +7,11 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
 import { BookingForm } from '../../models/booking.model';
 import { BookingService } from '../../services/booking.service';
+import { MessageComponent } from '../../shared/message/message.component';
 
 @Component({
     selector: 'app-detailed-room',
-    imports: [CommonModule, FormsModule, LoadingSpinnerComponent],
+    imports: [CommonModule, FormsModule, LoadingSpinnerComponent, MessageComponent],
     templateUrl: './detailed-room.component.html',
     styleUrl: './detailed-room.component.scss'
 })
@@ -29,6 +30,10 @@ export class DetailedRoomComponent implements OnInit {
     isLoaded: boolean = false;
     currImgIndex: number = 0;
     interval: any;
+
+    alertMsg: string = "";
+    alertMsgType!: "success" | "error";
+    alertShown: boolean = false;
 
     constructor(
         private roomService: RoomsService,
@@ -59,14 +64,22 @@ export class DetailedRoomComponent implements OnInit {
         if (form.valid) {
             this.bookingService.addBookedRoom(this.bookingData).subscribe(
                 () => {
+                    this.alertMsg = "You have successfully booked the room";
+                    this.alertMsgType = "success";
                     console.log("booked");
+                    this.alertShown = true;
                 },
                 (error) => {
-                    console.log("error")
-                    console.log(error);
+                    this.alertMsg = error.error;
+                    this.alertMsgType = "error";
+                    this.alertShown = true;
                 }
             );
         }
+    }
+
+    closeAlert() {
+        this.alertShown = false;
     }
 
     getCurrDate(): string {

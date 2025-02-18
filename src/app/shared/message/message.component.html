@@ -1,0 +1,6 @@
+<div class="wrapper" (click)="closeComponent()">
+    <div class="msg-box">
+        <p [ngClass]="messageType === 'success' ? 'success' : 'error'" class="msg">{{message}}</p>
+        <button class="close-btn" (click)="closeComponent()">OK</button>
+    </div>
+</div>
