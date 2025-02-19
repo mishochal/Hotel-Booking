@@ -6,16 +6,21 @@ import { BookedRoomComponent } from './booked-room/booked-room.component';
 import { HotelsService } from '../services/hotels.service';
 import { RoomsService } from '../services/rooms.service';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
+import { MessageComponent } from '../shared/message/message.component';
 
 @Component({
     selector: 'app-booked-rooms',
-    imports: [CommonModule, BookedRoomComponent, LoadingSpinnerComponent],
+    imports: [CommonModule, BookedRoomComponent, LoadingSpinnerComponent, MessageComponent],
     templateUrl: './booked-rooms.component.html',
     styleUrl: './booked-rooms.component.scss'
 })
 export class BookedRoomsComponent implements OnInit {
     bookedRooms: BookedRoom[] = [];
     isLoaded: boolean = false;
+
+    alertMsg: string = "";
+    alertMsgType!: "success" | "error";
+    alertShown: boolean = false;
 
     constructor(
         private bookingService: BookingService,
@@ -43,11 +48,26 @@ export class BookedRoomsComponent implements OnInit {
     }
 
     cancelBooking(bookingId: number): void {
-        this.bookingService.cancelBooking(bookingId).subscribe();
-        this.bookedRooms = this.bookedRooms.filter(
-            (bookedRoom) => {
-                return bookedRoom.id !== bookingId;
+        this.bookingService.cancelBooking(bookingId).subscribe(
+            () => {
+                this.bookedRooms = this.bookedRooms.filter(
+                    (bookedRoom) => {
+                        return bookedRoom.id !== bookingId;
+                    }
+                )
+                this.alertMsg = "Your booking has been successfully canceled";
+                this.alertMsgType = "success";
+                this.alertShown = true;
+            },
+            (error) => {
+                this.alertMsg = error.error;
+                this.alertMsgType = "error";
+                this.alertShown = true;
             }
-        )
+        );
+    }
+
+    closeAlert(): void {
+        this.alertShown = false;
     }
 }

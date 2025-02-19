@@ -20,3 +20,6 @@
         </tbody>
     </table>
 </section>
+
+<app-message *ngIf="alertShown" [message]="alertMsg" [messageType]="alertMsgType"
+    (closeComponentEvent)="closeAlert()"></app-message>
