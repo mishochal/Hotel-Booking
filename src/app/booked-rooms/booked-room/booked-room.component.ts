@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BookedRoom } from '../../models/booking.model';
 import { CommonModule } from '@angular/common';
 import { Hotel } from '../../models/hotels.model';
 import { Room } from '../../models/rooms.model';
 import { RoomsService } from '../../services/rooms.service';
 import { HotelsService } from '../../services/hotels.service';
-import { take } from 'rxjs/operators';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
@@ -16,6 +15,8 @@ import { BookingService } from '../../services/booking.service';
 })
 export class BookedRoomComponent implements OnInit {
     @Input() room!: BookedRoom
+
+    @Output() cancelBookingEvent = new EventEmitter<number>();
 
     bookedHotel: Hotel = {
         id: 0,
@@ -47,6 +48,6 @@ export class BookedRoomComponent implements OnInit {
     }
 
     cancelBooking(bookingId: number) {
-        this.bookingService.cancelBooking(bookingId).subscribe();
+        this.cancelBookingEvent.emit(bookingId);
     }
 }

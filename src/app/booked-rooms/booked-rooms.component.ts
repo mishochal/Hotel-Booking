@@ -41,4 +41,13 @@ export class BookedRoomsComponent implements OnInit {
             }
         )
     }
+
+    cancelBooking(bookingId: number): void {
+        this.bookingService.cancelBooking(bookingId).subscribe();
+        this.bookedRooms = this.bookedRooms.filter(
+            (bookedRoom) => {
+                return bookedRoom.id !== bookingId;
+            }
+        )
+    }
 }

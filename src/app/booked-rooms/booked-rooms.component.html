@@ -15,7 +15,8 @@
             </tr>
         </thead>
         <tbody>
-            <app-booked-room *ngFor="let booking of bookedRooms" [room]="booking" class="table-row"></app-booked-room>
+            <app-booked-room *ngFor="let booking of bookedRooms" (cancelBookingEvent)="cancelBooking($event)"
+                [room]="booking" class="table-row"></app-booked-room>
         </tbody>
     </table>
 </section>
