@@ -23,9 +23,9 @@ export class BookingService {
         return this.http.post(url, bookingData, { responseType: "text" });
     }
 
-    cancelBooking(bookingId: number): Observable<void> {
+    cancelBooking(bookingId: number): Observable<string> {
         const url = `${this.apirUrl}/${bookingId}`;
 
-        return this.http.delete<void>(url);
+        return this.http.delete(url, { responseType: "text" });
     }
 }
