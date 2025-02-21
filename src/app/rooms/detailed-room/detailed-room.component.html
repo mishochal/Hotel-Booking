@@ -18,8 +18,10 @@
             <img [src]="room!.images[currImgIndex].source" alt="Room Image">
         </div>
         <div class="small-imgs">
-            <img *ngFor="let image of room!.images; index as i" [src]="image.source" alt="Room Image" class="small-img"
-                (click)="selectImage(i)">
+            <div *ngFor="let image of room!.images; index as i"
+                [ngClass]="currImgIndex === i ? 'highlighted' : 'blurred'" class="small-img">
+                <img [src]="image.source" alt="Room Image" (click)="selectImage(i)">
+            </div>
         </div>
     </div>
     <div class="reservation-details">

@@ -63,9 +63,31 @@ img {
         gap: 10px;
         justify-content: center;
 
-        img {
+        .small-img {
             width: calc((100% - 7 * 10px) / 8);
-            cursor: pointer;
+            position: relative;
+
+            img {
+                cursor: pointer;
+            }
+        }
+
+        .small-img::after {
+            content: "";
+            display: block;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            transition: background-color 0.25s ease-in, box-shadow 0.25s ease-in;
+        }
+
+        .small-img.highlighted::after {
+            box-shadow: inset 0 0 0 3px lightseagreen;
+        }
+
+        .small-img.blurred::after {
+            background-color: rgba(0, 0, 0, 0.5);
         }
     }
 
