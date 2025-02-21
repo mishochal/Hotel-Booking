@@ -27,3 +27,15 @@ input[type=number] {
     appearance: textfield;
     -moz-appearance: textfield;
 }
+
+@media screen and (max-width: 900px) {
+    html {
+        font-size: 85%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 75%;
+    }
+}

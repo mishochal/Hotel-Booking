@@ -1,23 +1,30 @@
 <header>
     <div class="container">
-        <a [routerLink]="['/home']" class="main-logo-container">
-            <img src="main-logo.png" alt="Main Logo" class="main-logo">
-        </a>
+        <div class="left-side">
+            <a [routerLink]="['/home']" class="main-logo-container">
+                <img src="main-logo.png" alt="Main Logo" class="main-logo">
+            </a>
 
-        <div class="horizontal-line"></div>
+            <div class="horizontal-line"></div>
+        </div>
 
-        <nav class="main-navbar">
-            <ul class="navbar-list">
-                <li class="navbar-list-item"><a [routerLink]="['/home']" routerLinkActive="router-link-active"
-                        class="navbar-link">Home</a></li>
-                <li class="navbar-list-item"><a [routerLink]="['/hotels']" routerLinkActive="router-link-active"
-                        class="navbar-link">Hotels</a></li>
-                <li class="navbar-list-item"><a [routerLink]="['/rooms']" routerLinkActive="router-link-active"
-                        class="navbar-link">Rooms</a></li>
-                <li class="navbar-list-item"><a [routerLink]="['/booked-rooms']" routerLinkActive="router-link-active"
-                        class="navbar-link">Booked Rooms</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="right-side">
+            <label class="hamburger-menu">
+                <input type="checkbox" class="hamburger-checkbox">
+            </label>
+            <nav class="main-navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-list-item"><a [routerLink]="['/home']" routerLinkActive="router-link-active"
+                            class="navbar-link">Home</a></li>
+                    <li class="navbar-list-item"><a [routerLink]="['/hotels']" routerLinkActive="router-link-active"
+                            class="navbar-link">Hotels</a></li>
+                    <li class="navbar-list-item"><a [routerLink]="['/rooms']" routerLinkActive="router-link-active"
+                            class="navbar-link">Rooms</a></li>
+                    <li class="navbar-list-item"><a [routerLink]="['/booked-rooms']"
+                            routerLinkActive="router-link-active" class="navbar-link">Booked Rooms</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </header>
