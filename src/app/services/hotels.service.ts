@@ -15,6 +15,8 @@ export class HotelsService {
 
     public hotels: Hotel[] = [];
 
+    public viewingHotelId: number = 0;
+
     constructor(private http: HttpClient,
         private roomsService: RoomsService
     ) { }
@@ -40,23 +42,9 @@ export class HotelsService {
     }
 
     getHotelByRoom(roomId: number): Observable<Hotel> {
-        // let hotelId = 0;
-        // this.roomsService.getRoom(roomId).pipe(
-        //     take(1),
-        //     switchMap(room: Room) => {
-
-        //     }
-        // ).subscribe(
-        //     (room: Room) => {
-        //         hotelId = room.hotelId;
-        //         console.log(hotelId);
-        //     }
-        // )
-
-        // return this.getHotel(hotelId);
         return this.roomsService.getRoom(roomId).pipe(
             take(1),
-            switchMap((room: Room) => this.getHotel(room.hotelId)) // Ensures hotel is fetched only after room data arrives
+            switchMap((room: Room) => this.getHotel(room.hotelId))
         );
     }
 
