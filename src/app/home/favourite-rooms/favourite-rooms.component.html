@@ -1,18 +1,7 @@
 <div class="container">
-    <div *ngFor="let room of rooms" class="favourite-room">
-        <img src="https://images.trvl-media.com/lodging/16000000/15840000/15835100/15835033/cbb31f78.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium"
-            alt="Hotel Image" class="hotel-img">
-
-        <div class="hotel-card-body">
-            <div class="hotel-details">
-                <p class="hotel-desc">Premium Room</p>
-                <div class="hotel-price">
-                    <span class="amount">{{199 | currency}}</span>
-                    <span>a night</span>
-                </div>
-            </div>
-            <button class="book-btn">Book now</button>
-        </div>
+    <h2 class="heading">Favourite Rooms</h2>
+    <div *ngIf="isLoaded" class="favourite-rooms">
+        <app-room *ngFor="let room of rooms" [room]="room"></app-room>
     </div>
-
+    <app-loading-spinner *ngIf="!isLoaded"></app-loading-spinner>
 </div>
