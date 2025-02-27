@@ -66,7 +66,6 @@ export class DetailedRoomComponent implements OnInit {
                 () => {
                     this.alertMsg = "You have successfully booked the room";
                     this.alertMsgType = "success";
-                    console.log("booked");
                     this.alertShown = true;
                 },
                 (error) => {

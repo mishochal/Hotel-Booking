@@ -42,7 +42,6 @@ export class BookedRoomsComponent implements OnInit {
         this.bookingService.getBookedRooms().subscribe(
             (rooms) => {
                 this.bookedRooms = rooms;
-                console.log(this.bookedRooms);
             }
         )
     }
