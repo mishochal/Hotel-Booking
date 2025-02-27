@@ -4,3 +4,16 @@
     gap: 50px 25px;
     grid-template-columns: repeat(3, (calc((100% - 2 * 25px)/3)));
 }
+
+@media screen and (max-width: 800px) {
+    .rooms {
+        gap: 40px 20px;
+        grid-template-columns: repeat(2, (calc((100% - 20px) / 2)));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .rooms {
+        grid-template-columns: 100%
+    }
+}

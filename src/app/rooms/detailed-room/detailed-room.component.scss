@@ -9,6 +9,14 @@ img {
     align-items: flex-start;
     gap: 25px;
 
+    .room-imgs {
+        max-width: 750px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
     .main-img-container {
         position: relative;
 
@@ -58,7 +66,6 @@ img {
     }
 
     .small-imgs {
-        margin-top: 15px;
         display: flex;
         gap: 10px;
         justify-content: center;
@@ -96,6 +103,8 @@ img {
         border-radius: 8px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        max-width: 750px;
+        margin: auto;
 
         .reservation-header {
             position: relative;
@@ -164,6 +173,10 @@ img {
                     min-width: 250px;
                 }
 
+                input:focus {
+                    outline: 2px solid lightseagreen;
+                }
+
                 .error {
                     font-size: 0.7rem;
                     font-weight: bold;
@@ -181,6 +194,21 @@ img {
                 margin-top: 15px;
                 cursor: pointer;
             }
+        }
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .container {
+        flex-direction: column;
+
+        .room-imgs {
+            flex-direction: column-reverse;
+        }
+
+        .reservation-details {
+            width: 100%;
         }
     }
 }
