@@ -28,3 +28,18 @@
 
     }
 }
+
+@media screen and (max-width:690px) {
+    .container .booked-rooms-table thead tr th {
+        padding: 12px 4px;
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width:450px) {
+    .container .booked-rooms-table thead tr th {
+        font-size: 0.825rem;
+    }
+
+}

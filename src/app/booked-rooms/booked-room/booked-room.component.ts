@@ -6,10 +6,11 @@ import { Room } from '../../models/rooms.model';
 import { RoomsService } from '../../services/rooms.service';
 import { HotelsService } from '../../services/hotels.service';
 import { BookingService } from '../../services/booking.service';
+import { ShortenPipe } from '../../shared/shorten.pipe';
 
 @Component({
     selector: 'app-booked-room',
-    imports: [CommonModule],
+    imports: [CommonModule, ShortenPipe],
     templateUrl: './booked-room.component.html',
     styleUrl: './booked-room.component.scss'
 })

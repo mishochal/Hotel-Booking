@@ -4,7 +4,7 @@
             <img [src]="bookedHotel.featuredImage" alt="Hotel Image" class="img">
         </div>
         <div class="right">
-            <h5 class="name">{{ bookedHotel.name}}</h5>
+            <h5 class="name">{{ bookedHotel.name | shorten:15}}</h5>
             <p class="location">{{bookedHotel.city}}</p>
         </div>
     </div>
@@ -15,15 +15,15 @@
             <img [src]="bookedRoom?.images?.at(0)?.source" alt="Room Image" class="img">
         </div>
         <div class="right">
-            <h5 class="name">{{ bookedRoom?.name}}</h5>
+            <h5 class="name">{{ bookedRoom?.name | shorten:15}}</h5>
             <p class="price">{{ bookedRoom?.pricePerNight | currency}}</p>
         </div>
     </div>
 </td>
 <td class="customer-info">
     <div class="flex-col-container">
-        <p class="customer-name">Name: {{ room.customerName }}</p>
-        <p class="customer-number">Phone: {{ room.customerPhone }}</p>
+        <p class="customer-name">Name: {{ room.customerName | shorten:20}}</p>
+        <p class="customer-number">Phone: {{ room.customerPhone | shorten:21}}</p>
     </div>
 </td>
 <td class="status">{{room.isConfirmed }}</td>
