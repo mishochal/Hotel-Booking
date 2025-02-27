@@ -35,3 +35,21 @@
         }
     }
 }
+
+@media screen and (max-width: 650px) {
+    .hero-container {
+        min-height: 460px;
+
+        .hero-text {
+            font-size: 1.5rem;
+
+            .main-heading {
+                flex-direction: column;
+
+                .stars.hidden {
+                    display: none;
+                }
+            }
+        }
+    }
+}
