@@ -22,8 +22,14 @@
 </td>
 <td class="customer-info">
     <div class="flex-col-container">
-        <p class="customer-name">Name: {{ room.customerName | shorten:20}}</p>
-        <p class="customer-number">Phone: {{ room.customerPhone | shorten:21}}</p>
+        <p class="customer-name">
+            <span class="customer-info-type">Name: </span>
+            <span>{{ room.customerName | shorten:20}}</span>
+        </p>
+        <p class="customer-number">
+            <span class="customer-info-type">Phone: </span>
+            <span>{{ room.customerPhone | shorten:21}}</span>
+        </p>
     </div>
 </td>
 <td class="status">{{room.isConfirmed }}</td>

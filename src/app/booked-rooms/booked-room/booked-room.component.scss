@@ -112,4 +112,16 @@ td {
     td {
         font-size: 0.75rem;
     }
+
+    .customer-info p {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.675rem;
+
+        .customer-info-type {
+            font-weight: bold;
+            color: #777;
+        }
+    }
 }
