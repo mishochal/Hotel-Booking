@@ -8,10 +8,12 @@ import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-sp
 import { BookingForm } from '../../models/booking.model';
 import { BookingService } from '../../services/booking.service';
 import { MessageComponent } from '../../shared/message/message.component';
+import { RoomDetailsComponent } from './room-details/room-details.component';
+import { FavouriteRoomsComponent } from '../../shared/favourite-rooms/favourite-rooms.component';
 
 @Component({
     selector: 'app-detailed-room',
-    imports: [CommonModule, FormsModule, LoadingSpinnerComponent, MessageComponent],
+    imports: [CommonModule, FormsModule, RoomDetailsComponent, LoadingSpinnerComponent, MessageComponent, FavouriteRoomsComponent],
     templateUrl: './detailed-room.component.html',
     styleUrl: './detailed-room.component.scss'
 })

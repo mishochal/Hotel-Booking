@@ -1,0 +1,69 @@
+.container {
+    margin: 100px auto;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid lightseagreen;
+        color: #333;
+    }
+
+    .room-details {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+
+
+        .room-features {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 10px 0;
+            max-width: 600px;
+            min-width: 400px;
+            flex: 1;
+
+            .room-feature {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+
+                svg {
+                    width: 15px;
+                }
+
+                .check-svg {
+                    fill: lightseagreen;
+                }
+
+                .x-svg {
+                    fill: red;
+                }
+
+                p {
+                    font-size: 0.875rem;
+                    color: #333;
+                }
+            }
+        }
+
+        .room-overview {
+            color: #333;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.25rem;
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container .room-details {
+        flex-direction: column;
+        align-items: center;
+
+        .room-features {
+            width: 100%;
+            min-width: 0;
+        }
+    }
+}
