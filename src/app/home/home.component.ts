@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeroComponent } from './hero/hero.component';
-import { FavouriteRoomsComponent } from './favourite-rooms/favourite-rooms.component';
+import { FavouriteRoomsComponent } from '../shared/favourite-rooms/favourite-rooms.component';
 import { UspComponent } from './usp/usp.component';
 
 @Component({

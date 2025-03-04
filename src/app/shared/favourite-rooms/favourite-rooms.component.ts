@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Room } from '../../models/rooms.model';
 import { RoomsService } from '../../services/rooms.service';
 import { take } from 'rxjs';
-import { RoomComponent } from '../../shared/room/room.component';
-import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-spinner.component';
+import { RoomComponent } from '../room/room.component';
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
     selector: 'app-favourite-rooms',
